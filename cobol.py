@@ -78,7 +78,7 @@ def clean_cobol(lines):
             
 
     if len(holder) > 0:
-        print "[WARNING] probably invalid COBOL - found unfinished line: ", " ".join(holder)
+        print("[WARNING] probably invalid COBOL - found unfinished line: ", " ".join(holder))
 
     return output
 
@@ -98,7 +98,7 @@ def parse_cobol(lines):
         match = CobolPatterns.row_pattern.match(row.strip())
 
         if not match:
-            print "Found unmatched row", row.strip()
+            print("Found unmatched row", row.strip())
             continue
 
         match = match.groupdict()
@@ -120,7 +120,7 @@ def parse_cobol(lines):
 
                 match['redefines'] = None
             except IndexError:
-                print "Could not find the field to be redefined ({}) for row: {}".format(match['redefines'], row.strip())
+                print("Could not find the field to be redefined ({}) for row: {}".format(match['redefines'], row.strip()))
 
         output.append(match)
 
@@ -288,7 +288,7 @@ def print_cobol(lines):
         outp += (80-len(outp)) * ' '
         output.append(outp)
 
-    print "\n".join(output)
+    print("\n".join(output))
 
 if __name__ == '__main__':
     import argparse
@@ -304,7 +304,7 @@ if __name__ == '__main__':
     args = parser.parse_args() 
 
     if not os.path.isfile(args.filename):
-        print "Could not find", args.filename
+        print("Could not find", args.filename)
         exit()
 
     with open(args.filename,'r') as f:
